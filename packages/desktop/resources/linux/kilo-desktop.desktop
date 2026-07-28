@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Kilo
+Exec=/opt/Kilo/ai.kilo.desktop %U
+Terminal=false
+Type=Application
+Icon=ai.kilo.desktop
+StartupWMClass=ai.kilo.desktop
+NoDisplay=true
+Comment=Open source AI coding agent
+Categories=Development;
