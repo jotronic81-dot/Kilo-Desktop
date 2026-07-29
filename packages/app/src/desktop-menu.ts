@@ -6,21 +6,6 @@ export type DesktopMenuAction =
   | { type: "open-settings" }
   | { type: "open-help" }
 
-type DesktopMenuEntry = {
-  label: string
-  command?: string
-  action?: DesktopMenuAction
-  role?: DesktopMenuRole
-  enabled?: "updater" | boolean
-  accelerator?: {
-    macos?: string
-    win?: string
-    linux?: string
-  }
-  href?: string
-  items?: DesktopMenuEntry[]
-}
-
 export type DesktopMenuRole = "quit" | "hide" | "minimized" | "maximize" | "close"
 
 const DESKTOP_MENU: any = [
