@@ -1,4 +1,4 @@
-export { default as Splash } from "./logo/index.tsx"
+export { default as Splash } from "./logo/splash.tsx"
 export { useTheme } from "./theme/theme-context.tsx"
 export { resolveThemeVariant } from "./theme/resolve.ts"
 export type { Theme, ThemeTokens, DesktopTheme } from "./theme/types.ts"
