@@ -3,7 +3,7 @@ import { defineConfig } from "electron-vite"
 import appPlugin from "@kilocode-ai/app/vite"
 import * as fs from "node:fs/promises"
 
-const KILO_SERVER_DIST = "../kilo/dist/node"
+const KILO_SERVER_DIST = "../opencode/dist/node"
 
 const channel = (() => {
   const raw = process.env.KILO_CHANNEL

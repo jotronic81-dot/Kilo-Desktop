@@ -1,0 +1,5 @@
+export { default as Splash } from "./logo/index.tsx"
+export { useTheme } from "./theme/context.ts"
+export { resolveTheme } from "./theme/resolve.ts"
+export type { Theme } from "./theme/types.ts"
+export { themes } from "./theme/themes/oc-2.json"

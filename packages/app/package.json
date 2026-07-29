@@ -1,0 +1,1 @@
+{"name": "@kilocode-ai/app", "version": "0.0.0", "type": "module", "main": "./src/index.ts", "types": "./src/index.ts", "dependencies": {"@kilocode-ai/ui": "workspace:*", "@kilocode/sdk": "workspace:*"}}
