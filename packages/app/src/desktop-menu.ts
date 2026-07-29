@@ -1,4 +1,4 @@
-export type DesktopMenuAction = { type: string }
+export type DesktopMenuAction = string
 
 export type DesktopMenuRole = "quit" | "hide" | "minimized" | "maximize" | "close"
 
@@ -23,9 +23,9 @@ const DESKTOP_MENU: DesktopMenuEntry[] = [
     label: "File",
     items: [
       { label: "New Tab", command: "tab.new" },
-      { label: "Close Tab", action: { type: "close-tab" } },
+      { label: "Close Tab", action: "close-tab" },
       { label: "---", type: "separator" },
-      { label: "Open Settings", action: { type: "open-settings" } },
+      { label: "Open Settings", action: "open-settings" },
       { label: "---", type: "separator" },
       { label: "Quit", role: "quit" },
     ],
@@ -33,19 +33,19 @@ const DESKTOP_MENU: DesktopMenuEntry[] = [
   {
     label: "View",
     items: [
-      { label: "Toggle Sidebar", action: { type: "toggle-sidebar" } },
-      { label: "Toggle Fullscreen", action: { type: "toggle-fullscreen" } },
-      { label: "Reload", action: { type: "view.reload" } },
-      { label: "DevTools", action: { type: "view.toggleDevTools" } },
-      { label: "Zoom In", action: { type: "view.zoomIn" } },
-      { label: "Zoom Out", action: { type: "view.zoomOut" } },
-      { label: "Reset Zoom", action: { type: "view.resetZoom" } },
+      { label: "Toggle Sidebar", action: "toggle-sidebar" },
+      { label: "Toggle Fullscreen", action: "toggle-fullscreen" },
+      { label: "Reload", action: "view.reload" },
+      { label: "DevTools", action: "view.toggleDevTools" },
+      { label: "Zoom In", action: "view.zoomIn" },
+      { label: "Zoom Out", action: "view.zoomOut" },
+      { label: "Reset Zoom", action: "view.resetZoom" },
     ],
   },
   {
     label: "Help",
     items: [
-      { label: "Open Help", action: { type: "open-help" } },
+      { label: "Open Help", action: "open-help" },
     ],
   },
 ]
