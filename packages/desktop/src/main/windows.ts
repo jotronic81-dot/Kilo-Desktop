@@ -1,6 +1,6 @@
 import windowState from "electron-window-state"
 import { resolveThemeVariant } from "@kilocode-ai/ui/theme/resolve"
-import type { DesktopTheme } from "@kilocode-ai/ui/theme/types"
+import type { Theme } from "@kilocode-ai/ui/theme/types"
 import oc2ThemeJson from "../../../ui/src/theme/themes/oc-2.json"
 import { randomUUID } from "node:crypto"
 import { rmSync } from "node:fs"
@@ -22,7 +22,7 @@ const rendererHost = "renderer"
 const clipboardWritePermission = "clipboard-sanitized-write"
 const notificationPermission = "notifications"
 const rendererPermissions = new Set([clipboardWritePermission, notificationPermission])
-const oc2Theme = oc2ThemeJson as DesktopTheme
+const oc2Theme = oc2ThemeJson as Theme
 const oc2Background = {
   light: resolveThemeVariant(oc2Theme.light, false)["background-base"],
   dark: resolveThemeVariant(oc2Theme.dark, true)["background-base"],
