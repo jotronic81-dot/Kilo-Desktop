@@ -1,0 +1,37 @@
+{
+  "name": "OC-2",
+  "light": {
+    "background-base": "#ffffff",
+    "background-primary": "#f8f9fa",
+    "border-subtle": "#dadada",
+    "border-default": "#c2c2c2",
+    "text-primary": "#171717",
+    "text-secondary": "#525252",
+    "text-disabled": "#a3a3a3",
+    "primary-base": "#356acc",
+    "primary-hover": "#2e5ab8",
+    "primary-active": "#264a8c",
+    "success": "#22c55e",
+    "warning": "#f59e0b",
+    "danger": "#ef4444",
+    "background-accent": "#e0f2fe",
+    "text-accent": "#0c4a6e"
+  },
+  "dark": {
+    "background-base": "#1e1e1e",
+    "background-primary": "#252526",
+    "border-subtle": "#333333",
+    "border-default": "#404040",
+    "text-primary": "#e5e5e5",
+    "text-secondary": "#a3a3a3",
+    "text-disabled": "#737373",
+    "primary-base": "#60a5fa",
+    "primary-hover": "#3b82f6",
+    "primary-active": "#2563eb",
+    "success": "#4ade80",
+    "warning": "#fbbf24",
+    "danger": "#f87171",
+    "background-accent": "#1e3a5f",
+    "text-accent": "#bfdbfe"
+  }
+}
