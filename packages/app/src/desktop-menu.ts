@@ -1,8 +1,8 @@
-export type DesktopMenuAction = string
+export type DesktopMenuAction = { type: string }
 
 export type DesktopMenuRole = "quit" | "hide" | "minimized" | "maximize" | "close"
 
-type DesktopMenuEntryAction = {
+export type DesktopMenuEntry = {
   label: string
   command?: string
   action?: DesktopMenuAction
@@ -15,14 +15,8 @@ type DesktopMenuEntryAction = {
   }
   href?: string
   items?: DesktopMenuEntry[]
+  type?: "separator"
 }
-
-type DesktopMenuEntrySeparator = {
-  type: "separator"
-  label: string
-}
-
-export type DesktopMenuEntry = DesktopMenuEntryAction | DesktopMenuEntrySeparator
 
 const DESKTOP_MENU: DesktopMenuEntry[] = [
   {
