@@ -50,7 +50,7 @@ const DESKTOP_MENU: DesktopMenuEntry[] = [
   },
 ]
 
-function desktopMenuVisible(menu: DesktopMenuEntry, platform: string): boolean {
+function desktopMenuVisible(_menu: DesktopMenuEntry, _platform: string): boolean {
   return true
 }
 

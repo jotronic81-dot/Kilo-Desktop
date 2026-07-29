@@ -1,4 +1,4 @@
-export default function Splash(props: { class?: string }) {
+export default function Splash(_props: { class?: string }) {
   return null
 }
 

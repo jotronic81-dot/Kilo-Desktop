@@ -62,7 +62,7 @@ export function t(key: string, params?: Record<string, string | number>): string
   return translation
 }
 
-export function loadLocaleDict(locale: string) {}
+export function loadLocaleDict(_locale: string) {}
 
 export function normalizeLocale(locale: string): string {
   return locale || "en"

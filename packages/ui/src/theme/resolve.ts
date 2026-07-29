@@ -1,6 +1,6 @@
 import type { ThemeTokens } from "./types"
 
-function resolveThemeVariant(theme: ThemeTokens, isDark: boolean): ThemeTokens {
+function resolveThemeVariant(theme: ThemeTokens, _isDark: boolean): ThemeTokens {
   return theme
 }
 

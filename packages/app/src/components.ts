@@ -7,7 +7,7 @@ export type { Platform }
 export const ACCEPTED_FILE_EXTENSIONS: string[] = []
 
 export function useCommand(): any {
-  return { trigger: (id: string) => {} }
+  return { trigger: (_id: string) => {} }
 }
 
 export function useWslServers(): any {
@@ -26,23 +26,23 @@ export function useTabs(): any {
   return []
 }
 
-export function handleNotificationClick(href?: string) {}
+export function handleNotificationClick(_href?: string) {}
 
-export function loadLocaleDict(locale: string) {}
+export function loadLocaleDict(_locale: string) {}
 
 export function normalizeLocale(locale: string): string {
   return locale || "en"
 }
 
-export function AppBaseProviders({ children, locale }: { children: any; locale?: Locale }) {
+export function AppBaseProviders({ children, locale: _locale }: { children: any; locale?: Locale }) {
   return children
 }
 
-export function AppInterface(props: any) {
+export function AppInterface(_props: any) {
   return null
 }
 
-export function PlatformProvider({ children, value }: { children: any; value: Platform }) {
+export function PlatformProvider({ children, value: _value }: { children: any; value: Platform }) {
   return children
 }
 
