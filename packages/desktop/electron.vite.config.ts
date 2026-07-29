@@ -2,8 +2,11 @@ import { sentryVitePlugin } from "@sentry/vite-plugin"
 import { defineConfig } from "electron-vite"
 import appPlugin from "@kilocode-ai/app/vite"
 import * as fs from "node:fs/promises"
+import { dirname, join } from "node:path"
+import { fileURLToPath } from "node:url"
 
-const KILO_SERVER_DIST = "../opencode/dist/node"
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const KILO_SERVER_DIST = join(__dirname, "../opencode/dist")
 
 const channel = (() => {
   const raw = process.env.KILO_CHANNEL
@@ -65,7 +68,10 @@ const require = __cjs_mod__.createRequire(import.meta.url);
         name: "kilo:virtual-server-module",
         enforce: "pre",
         resolveId(id) {
-          if (id === "virtual:kilo-server") return this.resolve(`${KILO_SERVER_DIST}/node.js`)
+          if (id === "virtual:kilo-server") {
+            const resolved = `${KILO_SERVER_DIST}/node.js`
+            return resolved.endsWith(".js") ? resolved : `${resolved}.js`
+          }
         },
       },
       {

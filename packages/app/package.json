@@ -16,7 +16,7 @@
     "./server/types": "./src/server/types.ts",
     "./constants": "./src/constants.ts",
     "./components": "./src/components.ts",
-    "./vite/index": "./src/vite/index.ts"
+    "./vite": "./src/vite/index.ts"
   },
   "dependencies": {
     "@kilocode-ai/ui": "workspace:*",
