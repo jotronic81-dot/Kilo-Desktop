@@ -4,6 +4,43 @@ type Platform = Record<string, any>
 
 export type { Platform }
 
+export type UpdaterState = "idle" | "checking" | "available" | "downloading" | "installing" | "restart" | "error"
+
+export type WslServersState = Record<string, any>
+export type WslServersPlatform = { name: string }
+
+export type Theme = "light" | "dark" | "system"
+
+type Locale =
+  | "en"
+  | "zh"
+  | "zht"
+  | "ko"
+  | "de"
+  | "es"
+  | "fr"
+  | "da"
+  | "ja"
+  | "pl"
+  | "ru"
+  | "uk"
+  | "ar"
+  | "no"
+  | "br"
+  | "bs"
+
+type ServerConnection = Record<string, any>
+
+export type {
+  Platform,
+  UpdaterState,
+  WslServersState,
+  WslServersPlatform,
+  Theme,
+  Locale,
+  ServerConnection,
+}
+
 export const ACCEPTED_FILE_EXTENSIONS: string[] = []
 
 export function useCommand(): any {
@@ -46,5 +83,4 @@ export function PlatformProvider({ children, value }: { children: any; value: Pl
   return children
 }
 
-type ServerConnection = Record<string, any>
-export type { ServerConnection }
+export { appPlugin } from "./vite/index.ts"

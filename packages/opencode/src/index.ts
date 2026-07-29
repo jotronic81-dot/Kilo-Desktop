@@ -1,39 +1,19 @@
-type Locale =
-  | "en"
-  | "zh"
-  | "zht"
-  | "ko"
-  | "de"
-  | "es"
-  | "fr"
-  | "da"
-  | "ja"
-  | "pl"
-  | "ru"
-  | "uk"
-  | "ar"
-  | "no"
-  | "br"
-  | "bs"
+// i18n implementation with all locales
 
 type Dictionary = Record<string, string>
 
-export type { Locale }
-export function initI18n(): Promise<Locale> {
-  return Promise.resolve("en" as Locale)
+const EN: Dictionary = {
+  "new-tab": "New Tab",
+  "close-tab": "Close Tab",
+  "toggle-sidebar": "Toggle Sidebar",
+  "toggle-fullscreen": "Toggle Fullscreen",
+  "open-settings": "Open Settings",
+  "open-help": "Open Help",
 }
 
-export function t(key: string, params?: Record<string, string | number>): string {
-  return key
-}
+type Locale = "en"
 
-export const DESKTOP_MENU_VISIBLE_COMPONENTS: any = {
-  File: true,
-  View: true,
-  Help: true,
-}
-
-export type DesktopMenuAction =
+type DesktopMenuAction =
   | { type: "new-tab" }
   | { type: "close-tab" }
   | { type: "toggle-sidebar" }
@@ -41,9 +21,9 @@ export type DesktopMenuAction =
   | { type: "open-settings" }
   | { type: "open-help" }
 
-export type DesktopMenuRole = "quit" | "hide" | "minimized" | "maximize" | "close"
+type DesktopMenuRole = "quit" | "hide" | "minimized" | "maximize" | "close"
 
-export type DesktopMenuEntry = {
+type DesktopMenuEntry = {
   label: string
   command?: string
   action?: DesktopMenuAction
@@ -94,15 +74,14 @@ function desktopMenuVisible(menu: any, platform: string): boolean {
   return true
 }
 
-export {
-  DESKTOP_MENU,
-  desktopMenuVisible,
+export type {
   DesktopMenuAction,
   DesktopMenuRole,
   DesktopMenuEntry,
-  DESKTOP_MENU_VISIBLE_COMPONENTS,
-  initI18n,
-  t,
-  loadLocaleDict,
-  normalizeLocale,
+  Locale,
 }
+
+export type Dictionary = Dictionary
+export const DICTIONARY = EN
+
+export { DESKTOP_MENU, desktopMenuVisible }
