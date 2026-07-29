@@ -1,22 +1,38 @@
-export type DesktopMenuAction =
-  | { type: "new-tab" }
-  | { type: "close-tab" }
-  | { type: "toggle-sidebar" }
-  | { type: "toggle-fullscreen" }
-  | { type: "open-settings" }
-  | { type: "open-help" }
+export type DesktopMenuAction = string
 
 export type DesktopMenuRole = "quit" | "hide" | "minimized" | "maximize" | "close"
 
-const DESKTOP_MENU: any = [
+type DesktopMenuEntryAction = {
+  label: string
+  command?: string
+  action?: DesktopMenuAction
+  role?: DesktopMenuRole
+  enabled?: "updater" | boolean
+  accelerator?: {
+    macos?: string
+    win?: string
+    linux?: string
+  }
+  href?: string
+  items?: DesktopMenuEntry[]
+}
+
+type DesktopMenuEntrySeparator = {
+  type: "separator"
+  label: string
+}
+
+export type DesktopMenuEntry = DesktopMenuEntryAction | DesktopMenuEntrySeparator
+
+const DESKTOP_MENU: DesktopMenuEntry[] = [
   {
     label: "File",
     items: [
       { label: "New Tab", command: "tab.new" },
       { label: "Close Tab", action: { type: "close-tab" } },
-      { label: "---", type: "separator" as const },
+      { label: "---", type: "separator" },
       { label: "Open Settings", action: { type: "open-settings" } },
-      { label: "---", type: "separator" as const },
+      { label: "---", type: "separator" },
       { label: "Quit", role: "quit" },
     ],
   },
@@ -40,7 +56,7 @@ const DESKTOP_MENU: any = [
   },
 ]
 
-function desktopMenuVisible(menu: any, platform: string): boolean {
+function desktopMenuVisible(menu: DesktopMenuEntry, platform: string): boolean {
   return true
 }
 

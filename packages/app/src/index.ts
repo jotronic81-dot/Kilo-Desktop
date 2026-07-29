@@ -1,14 +1,17 @@
-// App exports - re-export all types and functions from individual modules
-export type { DesktopMenuAction, DesktopMenuRole } from "./desktop-menu.ts"
-export type { UpdaterState } from "./updater.ts"
-export type { Theme } from "./theme/types.ts"
-export type { Platform } from "./platform.ts"
-export type { WslServersState, WslServersPlatform } from "./wsl/types.ts"
-export type { Locale, Dictionary } from "./i18n/types.ts"
-export type { ServerConnection } from "./server/types.ts"
+// Platform type for native integrations
+type Platform = Record<string, any>
 
-export { ACCEPTED_FILE_EXTENSIONS } from "./constants.ts"
-export { useCommand, useWslServers, useServer, useSettings, useTabs, handleNotificationClick, loadLocaleDict, normalizeLocale, AppBaseProviders, AppInterface, PlatformProvider } from "./components.ts"
-export { appPlugin } from "./vite/index.ts"
+export type { Platform }
 
-export { DESKTOP_MENU, desktopMenuVisible } from "./desktop-menu.ts"
+export type { DesktopMenuAction, DesktopMenuRole, DesktopMenuEntry } from "./desktop-menu"
+export type { UpdaterState } from "./updater"
+export type { Theme } from "./theme/types"
+export type { WslServersState, WslServersPlatform } from "./wsl/types"
+export type { Locale } from "./i18n/types"
+export type { ServerConnection } from "./server/types"
+
+export { ACCEPTED_FILE_EXTENSIONS } from "./constants"
+export { useCommand, useWslServers, useServer, useSettings, useTabs, handleNotificationClick, loadLocaleDict, normalizeLocale, AppBaseProviders, AppInterface, PlatformProvider } from "./components"
+export { appPlugin } from "./vite/index"
+
+export { DESKTOP_MENU, desktopMenuVisible } from "./desktop-menu"
