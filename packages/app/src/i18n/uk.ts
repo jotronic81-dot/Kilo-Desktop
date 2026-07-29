@@ -1,4 +1,4 @@
-export const uk = {
+export const dict = {
   "new-tab": "Нова вкладка",
   "close-tab": "Закрити вкладку",
   "toggle-sidebar": "Переключити бічну панель",
@@ -6,3 +6,5 @@ export const uk = {
   "open-settings": "Відкрити налаштування",
   "open-help": "Відкрити довідку",
 }
+
+export const uk = dict

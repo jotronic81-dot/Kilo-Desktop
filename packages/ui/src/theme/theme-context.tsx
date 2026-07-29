@@ -1,24 +1,34 @@
-import { writable } from "svelte/store"
-import type { DesktopTheme } from "./types.ts"
-
 type ThemeStoreType = {
-  theme: DesktopTheme
-  setTheme: (theme: DesktopTheme) => void
-  resolvedTheme: "light" | "dark"
+  themeId: () => "light" | "dark" | "system"
+  mode: () => "light" | "dark"
+  setTheme: (theme: "light" | "dark" | "system") => void
+  resolvedTheme: () => "light" | "dark"
 }
 
-const themeStore = writable<ThemeStoreType>({
-  theme: "system" as DesktopTheme,
-  setTheme: () => {},
-  resolvedTheme: "light",
+let currentTheme: "light" | "dark" | "system" = "system"
+let resolvedThemeValue: "light" | "dark" = "light"
+const listeners: Set<(theme: ThemeStoreType) => void> = new Set()
+
+const updateResolvedTheme = () => {
+  resolvedThemeValue = currentTheme === "dark" ? "dark" : currentTheme === "light" ? "light" : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+}
+
+export const useTheme = (): ThemeStoreType => ({
+  themeId: () => currentTheme,
+  mode: () => resolvedThemeValue,
+  setTheme: (theme: "light" | "dark" | "system") => {
+    currentTheme = theme
+    updateResolvedTheme()
+    listeners.forEach(listener => listener(useTheme()))
+  },
+  resolvedTheme: () => resolvedThemeValue,
 })
 
-export const useTheme = () => {
-  return $themeStore
-}
-
 export const DesktopThemeProvider = {
-  subscribe: themeStore.subscribe,
+  subscribe: (cb: (theme: ThemeStoreType) => void) => {
+    listeners.add(cb)
+    return () => listeners.delete(cb)
+  },
 }
 
 export default useTheme

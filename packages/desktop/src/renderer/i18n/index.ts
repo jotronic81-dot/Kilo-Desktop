@@ -33,3 +33,7 @@ export { dict as appAr } from "../../../../app/src/i18n/ar"
 export { dict as appNo } from "../../../../app/src/i18n/no"
 export { dict as appBr } from "../../../../app/src/i18n/br"
 export { dict as appBs } from "../../../../app/src/i18n/bs"
+
+// Re-export i18n functions from app package
+export type { Locale } from "@kilocode-ai/app/i18n"
+export { initI18n, t, loadLocaleDict, normalizeLocale } from "@kilocode-ai/app/i18n"

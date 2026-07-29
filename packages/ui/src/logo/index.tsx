@@ -1,1 +1,1 @@
-export { default as Splash } from "./logo/splash.tsx"
+export { default as Splash } from "./splash"

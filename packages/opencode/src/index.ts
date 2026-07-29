@@ -1,6 +1,6 @@
-// App exports - re-export all types and functions from individual modules
-export type { DesktopMenuAction, DesktopMenuRole } from "./desktop-menu.ts"
-export type { UpdaterState } from "./updater.ts"
-export type { Theme } from "./theme/types.ts"
+// App exports - re-export all types and functions from app package
+export type { DesktopMenuAction, DesktopMenuRole } from "@kilocode-ai/app/desktop-menu"
+export type { UpdaterState } from "@kilocode-ai/app/updater"
+export type { Theme } from "@kilocode-ai/app/theme/types"
 
-export { DESKTOP_MENU } from "./desktop-menu.ts"
+export { DESKTOP_MENU } from "@kilocode-ai/app/desktop-menu"

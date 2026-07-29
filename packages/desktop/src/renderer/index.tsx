@@ -11,6 +11,7 @@ import {
   type Platform,
   PlatformProvider,
   ServerConnection,
+  type ServerConnectionAny,
   useCommand,
   useWslServers,
 } from "@kilocode-ai/app"
@@ -121,7 +122,7 @@ const createPlatform = (windowState: DesktopWindowState): Platform => {
     return undefined
   })()
 
-  const runDesktopMenuAction: Platform["runDesktopMenuAction"] = (action) => {
+  const runDesktopMenuAction: Platform["runDesktopMenuAction"] = (action: string) => {
     switch (action) {
       case "view.resetZoom":
         resetZoom()
@@ -172,14 +173,14 @@ const createPlatform = (windowState: DesktopWindowState): Platform => {
     version: pkg.version,
     windowID: windowState.id,
 
-    async openDirectoryPickerDialog(opts) {
+    async openDirectoryPickerDialog(opts: { multiple?: boolean; title?: string }) {
       return window.api.openDirectoryPicker({
         multiple: opts?.multiple ?? false,
         title: opts?.title ?? t("desktop.dialog.chooseFolder"),
       })
     },
 
-    async openAttachmentPickerDialog(opts, onFile) {
+    async openAttachmentPickerDialog(opts: { multiple?: boolean; title?: string; defaultPath?: string; extensions?: string[] }, onFile: (file: File) => Promise<void>) {
       const result = await window.api.openFilePicker({
         multiple: opts?.multiple ?? false,
         title: opts?.title ?? t("desktop.dialog.chooseFile"),
@@ -198,11 +199,11 @@ const createPlatform = (windowState: DesktopWindowState): Platform => {
       }
     },
 
-    getPathForFile(file) {
+    getPathForFile(file: File) {
       return attachmentPaths.get(file) ?? window.api.getPathForFile(file)
     },
 
-    async saveFilePickerDialog(opts) {
+    async saveFilePickerDialog(opts: { title?: string; defaultPath?: string }) {
       return window.api.saveFilePicker({
         title: opts?.title ?? t("desktop.dialog.saveFile"),
         defaultPath: opts?.defaultPath,
@@ -241,16 +242,16 @@ const createPlatform = (windowState: DesktopWindowState): Platform => {
 
     exportDebugLogs: () => window.api.exportDebugLogs(),
 
-    setForceFocus: (enabled) => window.api.setForceFocus(enabled),
+    setForceFocus: (enabled: boolean) => window.api.setForceFocus(enabled),
 
-    recordFatalRendererError: (error) => window.api.recordFatalRendererError(error),
+    recordFatalRendererError: (error: { error: string; url: string; version?: string; platform: string; os?: string }) => window.api.recordFatalRendererError(error),
 
     restart: async () => {
       await window.api.killSidecar().catch(() => undefined)
       window.api.relaunch()
     },
 
-    notify: async (title, description, href) => {
+    notify: async (title: string, description?: string, href?: string) => {
       const focused = await window.api.getWindowFocused().catch(() => document.hasFocus())
       if (focused) return
 
@@ -266,7 +267,7 @@ const createPlatform = (windowState: DesktopWindowState): Platform => {
       }
     },
 
-    fetch: (input, init) => {
+    fetch: (input: RequestInfo, init?: RequestInit) => {
       if (input instanceof Request) return fetch(input)
       return fetch(input, init)
     },
@@ -274,7 +275,7 @@ const createPlatform = (windowState: DesktopWindowState): Platform => {
     getDefaultServer: async () => {
       const url = await window.api.getDefaultServerUrl().catch(() => null)
       if (!url) return null
-      return ServerConnection.Key.make(url)
+      return url
     },
 
     setDefaultServer: async (url: string | null) => {
@@ -287,7 +288,7 @@ const createPlatform = (windowState: DesktopWindowState): Platform => {
       return window.api.getDisplayBackend().catch(() => null)
     },
 
-    setDisplayBackend: async (backend) => {
+    setDisplayBackend: async (backend: "wayland" | "auto" | null) => {
       await window.api.setDisplayBackend(backend)
     },
 
@@ -343,7 +344,7 @@ function DesktopRoot(props: { windowState: DesktopWindowState }) {
     if (!locale) return
     const next = normalizeLocale(locale)
     if (next !== "en") await loadLocaleDict(next)
-    return next satisfies Locale
+    return next as Locale
   }
 
   const [windowCount] = createResource(() => window.api.getWindowCount())
@@ -392,7 +393,7 @@ function DesktopRoot(props: { windowState: DesktopWindowState }) {
     )
     const servers = createMemo(() => {
       const data = initializationData(sidecar)
-      const list: ServerConnection.Any[] = []
+      const list: ServerConnectionAny[] = []
       if (data) {
         list.push({
           displayName: "Local Server",

@@ -1,3 +1,5 @@
+import type { Locale } from "./i18n/types"
+
 type Platform = Record<string, any>
 
 export type { Platform }
@@ -32,7 +34,7 @@ export function normalizeLocale(locale: string): string {
   return locale || "en"
 }
 
-export function AppBaseProviders({ children }: { children: any }) {
+export function AppBaseProviders({ children, locale }: { children: any; locale?: Locale }) {
   return children
 }
 

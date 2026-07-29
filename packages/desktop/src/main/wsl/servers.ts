@@ -74,7 +74,7 @@ export function createWslServersController(
   const probeDistro = options?.probeDistro ?? probeWslDistro
 
   const emit = () => {
-    for (const listener of listeners) listener({ type: "state", state })
+    for (const listener of listeners) listener({ type: "state", serverId: "", state })
   }
 
   const setState = (next: Partial<WslServersState>) => {

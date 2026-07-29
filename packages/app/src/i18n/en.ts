@@ -1,4 +1,4 @@
-export const en = {
+export const dict = {
   "new-tab": "New Tab",
   "close-tab": "Close Tab",
   "toggle-sidebar": "Toggle Sidebar",
@@ -6,3 +6,5 @@ export const en = {
   "open-settings": "Open Settings",
   "open-help": "Open Help",
 }
+
+export const en = dict
